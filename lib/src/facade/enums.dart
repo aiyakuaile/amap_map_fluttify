@@ -73,17 +73,30 @@ enum DashType {
 }
 
 enum MyLocationType {
-  /// 只定位
+  /// 只定位一次。
   Show,
 
-  /// 定位一次, 并移动到中心
+  /// 定位一次，且将视角移动到地图中心点。
   Locate,
 
-  /// 跟随
+  /// 连续定位、且将视角移动到地图中心点，定位蓝点跟随设备移动。（1秒1次定位）
   Follow,
 
-  /// 方向跟随
+  /// 以下值在iOS平台不支持：默认设置成：MAUserTrackingMode.MAUserTrackingModeFollowWithHeading
+  /// 连续定位、且将视角移动到地图中心点，地图依照设备方向旋转，定位点会跟随设备移动。（1秒1次定位）
   Rotate,
+
+  /// 连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。
+  LocalRotate,
+
+  /// 连续定位、蓝点不会移动到地图中心点，定位点依照设备方向旋转，并且蓝点会跟随设备移动。
+  LocalRotate_No_Center,
+
+  /// 连续定位、蓝点不会移动到地图中心点，并且蓝点会跟随设备移动。
+  Follow_No_Center,
+
+  /// 连续定位、蓝点不会移动到地图中心点，地图依照设备方向旋转，并且蓝点会跟随设备移动。
+  Rotate_No_Center
 }
 
 enum RideType {

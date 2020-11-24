@@ -14,7 +14,7 @@ import 'extensions.dart';
 class MyLocationOption {
   MyLocationOption({
     this.show = true,
-    this.myLocationType = MyLocationType.Locate,
+    this.myLocationType = MyLocationType.LocalRotate,
     this.interval = Duration.zero,
     this.strokeColor = Colors.transparent,
     this.strokeWidth = 0,

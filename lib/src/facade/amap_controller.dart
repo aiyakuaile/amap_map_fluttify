@@ -163,6 +163,30 @@ mixin _Community on _Holder {
                     .LOCATION_TYPE_MAP_ROTATE,
               );
               break;
+              case MyLocationType.LocalRotate:
+              await locationStyle.myLocationType(
+                com_amap_api_maps_model_MyLocationStyle
+                    .LOCATION_TYPE_LOCATION_ROTATE,
+              );
+              break;
+              case MyLocationType.LocalRotate_No_Center:
+              await locationStyle.myLocationType(
+                com_amap_api_maps_model_MyLocationStyle
+                    .LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER,
+              );
+              break;
+              case MyLocationType.Rotate_No_Center:
+              await locationStyle.myLocationType(
+                com_amap_api_maps_model_MyLocationStyle
+                    .LOCATION_TYPE_MAP_ROTATE_NO_CENTER,
+              );
+              break;
+              case MyLocationType.Follow_No_Center:
+              await locationStyle.myLocationType(
+                com_amap_api_maps_model_MyLocationStyle
+                    .LOCATION_TYPE_FOLLOW_NO_CENTER,
+              );
+              break;
           }
           // 定位间隔
           await locationStyle.interval(option.interval.inMilliseconds);
@@ -244,12 +268,13 @@ mixin _Community on _Holder {
                 true,
               );
               break;
-            case MyLocationType.Rotate:
+            default:
               await iosController.setUserTrackingMode_animated(
                 MAUserTrackingMode.MAUserTrackingModeFollowWithHeading,
                 true,
               );
               break;
+            
           }
 
           final style = await MAUserLocationRepresentation.create__();
@@ -315,6 +340,32 @@ mixin _Community on _Holder {
       },
       ios: (pool) async {
         await iosController.set_showsIndoorMap(show);
+      },
+    );
+  }
+
+  /// 是否显示楼块
+  Future<void> showsBuildings(bool show) async {
+    await platform(
+      android: (pool) async {
+        androidMap ??= await androidController.getMap();
+        await androidMap.showBuildings(show);
+      },
+      ios: (pool) async {
+        await iosController.set_showsBuildings(show);
+      },
+    );
+  }
+
+    /// 是否显示底图标注
+  Future<void> showsLabels(bool show) async {
+    await platform(
+      android: (pool) async {
+        androidMap ??= await androidController.getMap();
+        await androidMap.showMapText(how);
+      },
+      ios: (pool) async {
+        await iosController.set_showsLabels(show);
       },
     );
   }

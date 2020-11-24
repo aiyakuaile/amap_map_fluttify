@@ -362,7 +362,7 @@ mixin _Community on _Holder {
     await platform(
       android: (pool) async {
         androidMap ??= await androidController.getMap();
-        await androidMap.showMapText(how);
+        await androidMap.showMapText(show);
       },
       ios: (pool) async {
         await iosController.set_showsLabels(show);

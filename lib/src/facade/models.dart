@@ -493,6 +493,17 @@ class MapLocation {
       },
     );
   }
+
+  Future<double> get horizontalAccuracy {
+    return platform(
+      android: (pool) => androidModel.accuracy,
+      ios: (pool) async {
+        final location = await iosModel.get_location();
+        return location.horizontalAccuracy;
+      },
+    );
+  }
+
 }
 
 /// 地图标记

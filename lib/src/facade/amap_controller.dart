@@ -163,25 +163,25 @@ mixin _Community on _Holder {
                     .LOCATION_TYPE_MAP_ROTATE,
               );
               break;
-              case MyLocationType.LocalRotate:
+            case MyLocationType.LocalRotate:
               await locationStyle.myLocationType(
                 com_amap_api_maps_model_MyLocationStyle
                     .LOCATION_TYPE_LOCATION_ROTATE,
               );
               break;
-              case MyLocationType.LocalRotate_No_Center:
+            case MyLocationType.LocalRotate_No_Center:
               await locationStyle.myLocationType(
                 com_amap_api_maps_model_MyLocationStyle
                     .LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER,
               );
               break;
-              case MyLocationType.Rotate_No_Center:
+            case MyLocationType.Rotate_No_Center:
               await locationStyle.myLocationType(
                 com_amap_api_maps_model_MyLocationStyle
                     .LOCATION_TYPE_MAP_ROTATE_NO_CENTER,
               );
               break;
-              case MyLocationType.Follow_No_Center:
+            case MyLocationType.Follow_No_Center:
               await locationStyle.myLocationType(
                 com_amap_api_maps_model_MyLocationStyle
                     .LOCATION_TYPE_FOLLOW_NO_CENTER,
@@ -274,7 +274,6 @@ mixin _Community on _Holder {
                 true,
               );
               break;
-            
           }
 
           final style = await MAUserLocationRepresentation.create__();
@@ -331,6 +330,18 @@ mixin _Community on _Holder {
     );
   }
 
+  Future<void> setPointToCenter(int var1, int var2) async {
+    await platform(
+      android: (pool) async {
+        androidMap ??= await androidController.getMap();
+        await androidMap.setPointToCenter(var1, var2);
+      },
+      ios: (pool) async {
+        print('ios端暂时未实现');
+      },
+    );
+  }
+
   /// 是否显示室内地图
   Future<void> showIndoorMap(bool show) async {
     await platform(
@@ -357,7 +368,7 @@ mixin _Community on _Holder {
     );
   }
 
-    /// 是否显示底图标注
+  /// 是否显示底图标注
   Future<void> showsLabels(bool show) async {
     await platform(
       android: (pool) async {
@@ -1707,6 +1718,31 @@ mixin _Community on _Holder {
         await iosController.set_delegate(
           iosMapDelegate..onInfoWindowClicked = onInfoWindowClicked,
         );
+      },
+    );
+  }
+
+  /// 展示所有点于屏幕上
+  Future<void> showAnnotations(List<LatLng> annotations) async {
+    await platform(
+      android: (pool) async {
+        androidMap ??= await androidController.getMap();
+        var bounds = await com_amap_api_maps_model_LatLngBounds.builder();
+        for (LatLng coordinate in annotations) {
+          final lat = coordinate.latitude;
+          final lng = coordinate.longitude;
+          final latLng = await com_amap_api_maps_model_LatLng
+              .create__double__double(lat, lng);
+          bounds.include(latLng);
+        }
+        final cameraUpdate = await com_amap_api_maps_CameraUpdateFactory
+            .newLatLngBounds__com_amap_api_maps_model_LatLngBounds__int(
+                await bounds.build(), 120);
+        await androidMap
+            .animateCamera__com_amap_api_maps_CameraUpdate(cameraUpdate);
+      },
+      ios: (pool) async {
+        await iosController.showAnnotations_animated(annotations, true);
       },
     );
   }

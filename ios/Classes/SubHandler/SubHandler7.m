@@ -3106,6 +3106,12 @@ extern BOOL enableLog;
             // args
             // struct arg
             NSValue* coordinateValue = (NSValue*) args[@"coordinate"];
+            if ([coordinateValue isKindOfClass:[NSNull class]]) {
+                if (enableLog) {
+                    NSLog(@"MAMapPointForCoordinate*****异常数据");
+                }
+                return;
+            }
             CLLocationCoordinate2D coordinate;
             [coordinateValue getValue:&coordinate];
         
@@ -3246,6 +3252,12 @@ extern BOOL enableLog;
             // args
             // struct arg
             NSValue* aValue = (NSValue*) args[@"a"];
+            if([aValue isKindOfClass:[NSNull class]]){
+                if (enableLog){
+                    NSLog(@"MAMetersBetweenMapPoints*******异常数据");
+                }
+                return;
+            }
             MAMapPoint a;
             [aValue getValue:&a];
             // struct arg

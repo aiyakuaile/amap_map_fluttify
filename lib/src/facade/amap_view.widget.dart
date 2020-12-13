@@ -166,7 +166,7 @@ class _AmapViewState extends State<AmapView> {
   @override
   Widget build(BuildContext context) {
     final centerCoordinate =
-        widget.centerCoordinate ?? LatLng(39.91667, 116.41667);
+        widget.centerCoordinate ?? LatLng(39.950731,116.463085);
     if (Platform.isAndroid) {
       return ScopedReleasePool(
         tag: 'amap_map_fluttify',

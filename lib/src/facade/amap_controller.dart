@@ -1743,6 +1743,9 @@ mixin _Community on _Holder {
       },
       ios: (pool) async {
         await iosController.showAnnotations_animated(annotations, true);
+        UIEdgeInsets insets = await UIEdgeInsets.create(0, 120, 0, 120);
+        await iosController.showAnnotations_edgePadding_animated(
+            annotations, insets, true);
       },
     );
   }

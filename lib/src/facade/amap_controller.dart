@@ -1740,11 +1740,22 @@ mixin _Community on _Holder {
                 await bounds.build(), 120);
         await androidMap
             .animateCamera__com_amap_api_maps_CameraUpdate(cameraUpdate);
+        pool..add(bounds);
       },
       ios: (pool) async {
-        UIEdgeInsets insets = await UIEdgeInsets.create(0, 120, 0, 120);
+        List<MAPointAnnotation> mations = [];
+        for (LatLng coordinate in annotations) {
+          final lat = coordinate.latitude;
+          final lng = coordinate.longitude;
+          final annotation = await MAPointAnnotation.create__();
+          final coordinate2D = await CLLocationCoordinate2D.create(lat, lng);
+          await annotation.set_coordinate(coordinate2D);
+          mations.add(annotation);
+        }
+        UIEdgeInsets insets = await UIEdgeInsets.create(20, 120, 20, 120);
         await iosController.showAnnotations_edgePadding_animated(
-            annotations, insets, true);
+            mations, insets, true);
+        pool..addAll(mations);
       },
     );
   }

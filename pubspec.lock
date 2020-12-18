@@ -11,9 +11,11 @@ packages:
   amap_location_fluttify:
     dependency: "direct main"
     description:
-      name: amap_location_fluttify
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "3166942ef2213e4ef9f1ef327ea5eb1dc665abc5"
+      url: "https://github.com/aiyakuaile/amap_location_fluttify.git"
+    source: git
     version: "0.18.0"
   amap_search_fluttify:
     dependency: "direct main"

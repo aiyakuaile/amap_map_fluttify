@@ -9,7 +9,7 @@
     },
     {
       "name": "amap_location_fluttify",
-      "rootUri": "file:///Users/mac/flutter/.pub-cache/hosted/pub.flutter-io.cn/amap_location_fluttify-0.18.0",
+      "rootUri": "file:///Users/mac/flutter/.pub-cache/git/amap_location_fluttify-3166942ef2213e4ef9f1ef327ea5eb1dc665abc5/",
       "packageUri": "lib/",
       "languageVersion": "2.6"
     },
@@ -212,7 +212,7 @@
       "languageVersion": "2.6"
     }
   ],
-  "generated": "2020-12-14T10:08:42.767673Z",
+  "generated": "2020-12-18T03:47:58.839328Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

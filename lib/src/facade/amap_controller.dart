@@ -1780,7 +1780,6 @@ mixin _Community on _Holder {
         }
 
         pool
-          ..add(map)
           ..add(southWest)
           ..add(northEast)
           ..add(rect)
